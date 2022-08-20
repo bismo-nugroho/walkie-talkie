@@ -78,7 +78,7 @@ export default {
   },
   firestore() {
     return {
-      messages: this.messagesCollection.orderBy("createdAt").limitToLast(1),
+      messages: this.messagesCollection.orderBy("createdAt").limitToLast(50),
     };
   },
   methods: {
@@ -111,6 +111,7 @@ export default {
       this.newMessageText = "";
       this.newAudio = null;
     },
+
     async record() {
       if ( this.recorder ) return 0;
 
@@ -140,13 +141,13 @@ export default {
     },
 
     async start_record(){
-    this.record();
+    await this.record();
     },
 
     async stop_record(){
       await this.stop();
       this.newMessageText = "PTT Message";
-      await this.addMessage(this.user.id);
+      setTimeout(function(){this.addMessage(this.user.id,500));
     },
     async stop() {
       this.recorder.stop();
