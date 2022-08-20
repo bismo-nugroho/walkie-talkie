@@ -3,7 +3,7 @@
     {{ message.text }}
     <br />
 
-    <audio v-if="message.audioURL"  :autoplay="autoplay()" :src="message.audioURL" controls></audio>
+    <audio v-if="message.audioURL"  :autoplay="{ 'autoplay': status }" :src="message.audioURL" controls></audio>
     <br />
 
     <span class="sender">from UID {{ message.sender }}</span>
@@ -14,11 +14,11 @@
 export default {
   props: ["message", "owner"],
  methods: {
-      autoplay(){
+      status(){
         if (this.owner)
-          return "false";
+          return false;
         else
-          return "autoplay";  
+          return true;
       }
     }
 };
