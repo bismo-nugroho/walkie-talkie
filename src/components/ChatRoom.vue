@@ -28,10 +28,10 @@
           &nbsp;
           &nbsp;
 
-          <button v-if="!recorder" @click="record()" class="orange-button">Record Voice</button>
-          <button v-else @click="stop()" class="red-button">Stop</button>
-          <button @mousedown="start_record()" @mouseup="end_record()"  class="orange-button">Push to Talk</button>
-        
+
+          <button  v-if="!recorder"  @click="start_record()"  class="green-button">Push to Talk</button>
+           <button  v-else  @click="stop_record()"  class="orange-button">Push to Send</button>
+       
 
 
           <audio v-if="newAudio" :src="newAudioURL" controls></audio>
