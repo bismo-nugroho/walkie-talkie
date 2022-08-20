@@ -78,7 +78,7 @@ export default {
   },
   firestore() {
     return {
-      messages: this.messagesCollection.orderBy("createdAt").limitToLast(0),
+      messages: this.messagesCollection.orderBy("createdAt").limitToLast(1),
     };
   },
   methods: {
