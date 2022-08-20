@@ -144,6 +144,8 @@ export default {
 
     async stop_record(){
       this.stop();
+      this.newMessageText = "PTT Message";
+      this.addMessage(this.user.id);
     },
     async stop() {
       this.recorder.stop();
