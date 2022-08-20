@@ -30,6 +30,9 @@
 
           <button v-if="!recorder" @click="record()" class="orange-button">Record Voice</button>
           <button v-else @click="stop()" class="red-button">Stop</button>
+          <button @mousedown="start_record()" @mouseup="end_record()"  class="orange-button">Push to Talk</button>
+        
+
 
           <audio v-if="newAudio" :src="newAudioURL" controls></audio>
         </div>
@@ -108,6 +111,8 @@ export default {
       this.newAudio = null;
     },
     async record() {
+      if ( this.recorder ) return 0;
+
       this.newAudio = null;
 
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -131,6 +136,14 @@ export default {
       });
 
       this.recorder.start();
+    },
+
+    async start_record(){
+    this.record();
+    },
+
+    async stop_record(){
+      this.stop();
     },
     async stop() {
       this.recorder.stop();
