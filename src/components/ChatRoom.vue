@@ -29,9 +29,10 @@
           &nbsp;
 
 
-          <button  v-if="!recorder"  @click="start_record()"  class="green-button">Push to Talk</button>
-           <button  v-else  @click="stop_record()"  class="orange-button">Push to Send</button>
-       
+          <button  v-if="!recorder && !this.loading"  @click="start_record()"  class="green-button">Push to Talk</button>
+           <button  v-if="recorder && !this.loading"  @click="stop_record()"  class="orange-button">Push to Send</button>
+            <button  v-if="this.loading"  class="orange-button">Sending PTT</button>
+      
 
 
           <audio v-if="newAudio" :src="newAudioURL" controls></audio>
@@ -77,7 +78,7 @@ export default {
   },
   firestore() {
     return {
-      messages: this.messagesCollection.orderBy("createdAt").limitToLast(50),
+      messages: this.messagesCollection.orderBy("createdAt").limitToLast(0),
     };
   },
   methods: {
@@ -151,6 +152,6 @@ export default {
       this.recorder.stop();
       this.recorder = null;
     },
-  },
+  }
 };
 </script>

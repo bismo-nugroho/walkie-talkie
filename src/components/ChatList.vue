@@ -15,9 +15,13 @@ import { db } from "../firebase";
 export default {
   data() {
     return {
-      chats: [],
+      chats: []
     };
   },
+    async mounted() {
+      this.initial = true;
+
+    },
   firestore() {
     return {
       chats: db.collection("chats").where("owner", "==", this.uid),
