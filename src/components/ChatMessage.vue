@@ -3,7 +3,9 @@
     {{ message.text }}
     <br />
 
-    <audio v-if="message.audioURL"  :autoplay="{owner}" :src="message.audioURL" controls></audio>
+    <audio v-if="message.audioURL && owner" :src="message.audioURL" controls></audio>
+
+    <audio v-if="message.audioURL && !owner"  :autoplay="{owner}" :src="message.audioURL" controls></audio>    
     <br />
 
     <span class="sender">from UID {{ message.sender }}</span>
