@@ -144,10 +144,10 @@ export default {
     await this.record();
     },
 
-    async stop_record(uid){
-      await this.stop();
+    stop_record(uid){
+      this.stop(uid);
       this.newMessageText = "PTT Message";
-      await this.addMessage(uid);
+      setTimeout(function(){this.addMessage(uid)},500);
     },
     async stop() {
       this.recorder.stop();
