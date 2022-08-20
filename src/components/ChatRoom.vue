@@ -30,7 +30,7 @@
 
 
           <button  v-if="!recorder && !loading"  @click="start_record()"  class="green-button">Push to Talk</button>
-           <button  v-if="recorder && !loading"  @click="stop_record()"  class="orange-button">Push to Send</button>
+           <button  v-if="recorder && !loading"  @click="stop_record(user.uid)"  class="orange-button">Push to Send</button>
             <button  v-if="loading"  class="orange-button">Sending PTT</button>
       
 
@@ -144,10 +144,10 @@ export default {
     await this.record();
     },
 
-    async stop_record(){
+    async stop_record(uid){
       await this.stop();
       this.newMessageText = "PTT Message";
-      setTimeout(function(){this.addMessage(this.user.id)},500);
+      await this.addMessage(uid);
     },
     async stop() {
       this.recorder.stop();
