@@ -30,12 +30,12 @@
 
 
           <button  v-if="!recorder && !loading"  @click="start_record()"  class="green-button">Push to Talk</button>
-           <button  v-if="recorder && !loading"  @click="stop_record(user.uid)"  class="orange-button">Push to Send</button>
-            <button  v-if="loading"  class="orange-button">Sending PTT</button>
+           <button  v-if="recorder && !loading"  @click="stop_record(user.uid)"  class="red-button">Push to Send</button>
+            <button  v-if="loading"  class="orange-button">Sending PTT...</button>
       
 
 
-          <audio v-if="newAudio" :src="newAudioURL" controls></audio>
+          <audio v-if="newAudio" :src="newAudioURL" controls style="display:none"></audio>
         </div>
       </div>
 
@@ -145,6 +145,7 @@ export default {
     },
 
     stop_record(uid){
+         this.loading = true;
       let obj = this;
       this.stop(uid);
       this.newMessageText = "PTT Message";

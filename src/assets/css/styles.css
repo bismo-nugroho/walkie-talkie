@@ -131,6 +131,10 @@ button:hover {
     background-color: var(--orange);
 }
 
+.green-button {
+    background-color: var(--green);
+}
+
 .red-button {
     background-color: var(--red);
 
