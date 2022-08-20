@@ -29,8 +29,8 @@
           &nbsp;
 
 
-          <button  v-if="!recorder && !this.loading"  @click="start_record()"  class="green-button">Push to Talk</button>
-           <button  v-if="recorder && !this.loading"  @click="stop_record()"  class="orange-button">Push to Send</button>
+          <button  v-if="!recorder && !loading"  @click="start_record()"  class="green-button">Push to Talk</button>
+           <button  v-if="recorder && !loading"  @click="stop_record()"  class="orange-button">Push to Send</button>
             <button  v-if="loading"  class="orange-button">Sending PTT</button>
       
 
